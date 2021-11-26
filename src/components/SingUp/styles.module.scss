@@ -1,0 +1,36 @@
+.paperStyles {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 500px;
+  padding: 20px;
+  margin: 0 auto; 
+  padding-bottom: 40px;
+}
+
+.header {
+  margin: 0px;
+  font-size: 25px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.formControl {
+  right: 170px;
+  top: 10px;
+}
+
+.buttonSignUp{
+  margin: 25px 0;
+  top: 20px
+}
+
+.message {
+  color: #ff0000;
+  font-size: 17px;
+  font-family: Roboto;
+}
