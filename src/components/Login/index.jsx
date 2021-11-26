@@ -1,5 +1,5 @@
 import styles from './styles.module.scss'
-import { Avatar, Button, Checkbox, FormControlLabel, Grid, Paper, TextField } from '@material-ui/core'
+import { Avatar, Button, Checkbox, FormControlLabel, Grid, Paper, TextField, Typography, Link } from '@material-ui/core'
 
 import LockOutlined from '@material-ui/icons/LockOutlined';
 import green from '@material-ui/core/colors/green';
@@ -9,11 +9,16 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup'
 import React from 'react'
 
-function Login() {
+function Login({ handleChange }) {
 
   const schema = yup.object({
-    emailLogin: yup.string().required("required field*").email( "email invalid*"),
-    passwordLogin: yup.string().required("required field*"),
+    emailLogin: yup.string()
+      .email( "email invalid*")
+      .required("required field*"),
+    passwordLogin: yup.string()
+      .min(4, "password minimum length should be 4*")
+      .max(80, "password maximum length should be 80*")
+      .required("required field*"),
   }).required();
 
   const { register, handleSubmit, formState: { errors }} = useForm({
@@ -21,7 +26,7 @@ function Login() {
   });
 
   const onSubmit = data => {
-    console.log(data)
+    alert("[LOGIN SUCCESSFUL]");
   }
 
   return (
@@ -49,7 +54,20 @@ function Login() {
         />
          
           <Button fullWidth  type="submit" onSubmit={handleSubmit(onSubmit)} className={styles.buttonLogin} color="primary" variant="contained">Sign in</Button>
-    
+          
+        <div className={styles.link}>
+          <Typography>
+            <Link href="/">
+              Forgot password ?
+            </Link>
+          </Typography>
+
+          <Typography> Do you have an account ?
+            <Link href="#" onClick={() => handleChange("event", 1)} >
+              Sign Up
+            </Link>
+          </Typography>
+        </div>
       </form>
       </Paper>
     </Grid >

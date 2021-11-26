@@ -13,12 +13,25 @@ import React from 'react'
 
 function SignUp() {
   const schema = yup.object({
-    name: yup.string().required("required field*").min(2, "name minimum length should be 2*"),
-    email: yup.string().email("email invalid*").required("required field*"),
-    password: yup.string().required("required field*").min(4, "password minimum length should be 4*"),
-    confirmPassword: yup.string().oneOf([yup.ref('password'), null], "passwords must match*").required("required field*"),
-    checkbox: yup.string().oneOf(["true", null], "you must accept the terms and conditions*").required("checkbox is required*"),
-  }).required();
+    name: yup.string()
+      .required("required field*")
+      .min(2, "name minimum length should be 2*")
+      .max(50, "name maximum length should be 50*")
+      .matches(/^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$/, "name must consist only of letters*"),
+    email: yup.string()
+      .email("email invalid*")
+      .required("required field*"),
+    password: yup.string()
+      .required("required field*")
+      .min(4, "password minimum length should be 4*")
+      .max(80, "password maximum length should be 80*"),
+    confirmPassword: yup.string()
+      .oneOf([yup.ref('password'), null], "passwords must match*")
+      .required("required field*"),
+    checkbox: yup.boolean()
+      .oneOf([true, null], "you must accept the terms and conditions*")
+      .required("checkbox is required*"),
+  });
 
   const { register, handleSubmit, formState: { errors }} = useForm({
     resolver: yupResolver(schema),
