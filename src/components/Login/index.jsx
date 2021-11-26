@@ -33,9 +33,9 @@ function Login() {
         </Grid>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <TextField fullWidth label='Email' placeholder="Enter email" variant="standard" {...register("emailLogin")} error={errors.emailLogin}/>
+        <TextField fullWidth label='Email' variant="standard" {...register("emailLogin")} error={errors.emailLogin}/>
           <p className={styles.message}>{errors.emailLogin?.message}</p>
-        <TextField fullWidth label='Password' placeholder="Enter password" type="password" variant="standard" {...register("passwordLogin")} error={errors.passwordLogin}/>
+        <TextField fullWidth label='Password' type="password" variant="standard" {...register("passwordLogin")} error={errors.passwordLogin}/>
           <p className={styles.message}>{errors.passwordLogin?.message}</p>
 
         <FormControlLabel
